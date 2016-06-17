@@ -109,9 +109,9 @@ var Swipeout = React.createClass({
     }
     this.refs.swipeoutContent.measure((ox, oy, width, height) => {
       this.setState({
-        btnWidth: (width/5),
-        btnsLeftWidth: this.props.left ? (width/5)*this.props.left.length : 0,
-        btnsRightWidth: this.props.right ? (width/5)*this.props.right.length : 0,
+        btnWidth: width,
+        btnsLeftWidth: this.props.left ? width*this.props.left.length : 0,
+        btnsRightWidth: this.props.right ? width*this.props.right.length : 0,
         swiping: true,
         timeStart: (new Date()).getTime(),
       })
@@ -119,6 +119,7 @@ var Swipeout = React.createClass({
   }
 , _handlePanResponderMove: function(e: Object, gestureState: Object) {
     var posX = gestureState.dx
+    console.warn(posX)
     var posY = gestureState.dy
     var leftWidth = this.state.btnsLeftWidth
     var rightWidth = this.state.btnsRightWidth
@@ -145,7 +146,7 @@ var Swipeout = React.createClass({
     var btnsRightWidth = this.state.btnsRightWidth
 
     //  minimum threshold to open swipeout
-    var openX = contentWidth*0.33
+    var openX = contentWidth*0.5
 
     //  should open swipeout
     var openLeft = posX > openX || posX > btnsLeftWidth/2
@@ -167,10 +168,14 @@ var Swipeout = React.createClass({
         // open swipeout right
         this._tweenContent('contentPos', -btnsRightWidth)
         this.setState({ contentPos: -btnsRightWidth, openedLeft: false, openedRight: true })
+        this.props.onOpenRight();
+        this._close()
       } else if (openLeft && contentPos > 0 && posX > 0) {
         // open swipeout left
         this._tweenContent('contentPos', btnsLeftWidth)
         this.setState({ contentPos: btnsLeftWidth, openedLeft: true, openedRight: false })
+        this.props.onOpenLeft();
+        this._close()
       }
       else {
         // close swipeout
