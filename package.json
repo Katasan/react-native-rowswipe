@@ -1,14 +1,14 @@
 {
-  "name": "react-native-swipeout",
-  "version": "2.0.12",
-  "description": "iOS-style swipeout buttons behind component",
+  "name": "react-native-rowswipe",
+  "version": "0.0.1",
+  "description": "iOS-style row swipe, forked from react-native-swipeout",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:dancormier/react-native-swipeout.git"
+    "url": "git@github.com:katasan/react-native-rowswipe.git"
   },
   "keywords": [
     "react-native",
@@ -21,10 +21,6 @@
   ],
   "author": "Dan Cormier",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dancormier/react-native-swipeout/issues"
-  },
-  "homepage": "https://github.com/dancormier/react-native-swipeout",
   "dependencies": {
     "react-tween-state": "^0.1.3"
   },

@@ -1,12 +1,15 @@
-# react-native-swipeout
-iOS-style swipeout buttons that appear from behind a component
 
-![swipeout preview](http://i.imgur.com/oCQLNFC.gif)
+# react-native-rowswipe
+This component is a fork of the react-native-swipeout component with slightly different behaviour.
 
-## Installation
-```
-npm install --save react-native-swipeout
-```
+Rather than displaying buttons behind the swipe row, you swipe it to the left or the right of the screen to trigger an action.
+
+This component should be conssidered unsupported and unmaintained and probably not used by anyone.
+
+Forked from https://github.com/abelcha/react-native-swipeout
+Which was forked from https://github.com/dancormier/react-native-swipeout
+
+
 
 ## Usage example
 
@@ -15,7 +18,7 @@ See the [Wiki](https://github.com/dancormier/react-native-swipeout/wiki) usage t
 To use swipeout behind a iOS-style listitem, try [react-native-listitem](https://github.com/dancormier/react-native-listitem).
 
 ```
-var Swipeout = require('react-native-swipeout')
+var Swipeout = require('react-native-rowswipe')
 
 // Buttons
 var swipeoutBtns = [
@@ -44,6 +47,8 @@ left            | array  | Yes      | []        | swipeout buttons on left
 onOpen          | func   | Yes      |           |
 right           | array  | Yes      | []        | swipeout buttons on right
 scroll          | func   | Yes      |           | prevent parent scroll
+onOpenLeft		| func	 | No		| 			| called when swiped to the left
+onOpenRight		| func 	 | No		|			| called when swiped to the right
 
 ##### Button props
 
@@ -57,6 +62,3 @@ text            | string | Yes      | 'Click Me'| text
 type            | string | Yes      | 'default' | default, primary, secondary
 underlayColor   | string | Yes      | null      | button underlay color on press
 
-## To Do
-
-[https://github.com/dancormier/react-native-swipeout/issues](https://github.com/dancormier/react-native-swipeout/issues)
