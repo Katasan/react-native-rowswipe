@@ -109,7 +109,7 @@ var Swipeout = React.createClass({
     }
     this.refs.swipeoutContent.measure((ox, oy, width, height) => {
       this.setState({
-        btnWidth: width,
+        btnWidth: width/5,
         btnsLeftWidth: this.props.left ? width*this.props.left.length : 0,
         btnsRightWidth: this.props.right ? width*this.props.right.length : 0,
         swiping: true,
