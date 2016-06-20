@@ -22,6 +22,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
   },
   swipeoutBtns: {
+    backgroundColor: '#b6bec0',
     bottom: 0,
     flex: 1,
     flexDirection: 'row',
