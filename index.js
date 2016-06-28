@@ -16,6 +16,7 @@ var SwipeoutBtn = React.createClass({
       text: 'Click me',
       type: '',
       width: 0,
+      onSwipingStateChange: () => {},
     }
   }
 , render: function() {
@@ -115,6 +116,7 @@ var Swipeout = React.createClass({
         swiping: true,
         timeStart: (new Date()).getTime(),
       })
+        this.props.onSwipingStateChange(true);
     })
   }
 , _handlePanResponderMove: function(e: Object, gestureState: Object) {
@@ -206,6 +208,7 @@ var Swipeout = React.createClass({
     if (this.state.autoClose) this._close()
   }
 , _close: function() {
+        this.props.onSwipingStateChange(false);
     this._tweenContent('contentPos', 0)
     this.setState({
       openedRight: false,
