@@ -73,6 +73,7 @@ var Swipeout = React.createClass({
     return {
       rowID: -1,
       sectionID: -1,
+      swipePadding: 100
     }
   }
 , getInitialState: function() {
@@ -86,6 +87,7 @@ var Swipeout = React.createClass({
       contentWidth: 0,
       openedRight: false,
       swiping: false,
+      paddedSwiping: false,
       tweenDuration: 160,
       timeStart: null,
     }
@@ -104,6 +106,12 @@ var Swipeout = React.createClass({
 , componentWillReceiveProps: function(nextProps) {
     if (nextProps.close) this._close()
   }
+, componentDidUpdate: function(prevProps, prevState) {
+  if (prevState.paddedSwiping != this.state.paddedSwiping) {
+    //console.warn('on swiping state change', prevState.paddedSwiping, this.state.paddedSwiping)
+    this.props.onSwipingStateChange(this.state.paddedSwiping);
+  }
+}
 , _handlePanResponderGrant: function(e: Object, gestureState: Object) {
     if(this.props.onOpen){
       this.props.onOpen(this.props.sectionID, this.props.rowID)
@@ -115,8 +123,7 @@ var Swipeout = React.createClass({
         btnsRightWidth: this.props.right ? width*this.props.right.length : 0,
         swiping: true,
         timeStart: (new Date()).getTime(),
-      })
-        this.props.onSwipingStateChange(true);
+      });
     })
   }
 , _handlePanResponderMove: function(e: Object, gestureState: Object) {
@@ -137,6 +144,13 @@ var Swipeout = React.createClass({
       //  move content to reveal swipeout
       if (posX < 0 && this.props.right) this.setState({ contentPos: Math.min(posX, 0) })
       else if (posX > 0 && this.props.left) this.setState({ contentPos: Math.max(posX, 0) })
+
+      // If we're beyond some padding on the edge, let's fire the onSwipingStateChange event (if it hasn't already fired)
+      if (Math.abs(posX) > this.props.swipePadding) {
+        this.setState({paddedSwiping: true});
+      } else {
+        if (this.state.paddedSwiping) this.setState({paddedSwiping: false})
+      }
     }
   }
 , _handlePanResponderEnd: function(e: Object, gestureState: Object) {

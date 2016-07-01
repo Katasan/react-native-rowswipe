@@ -1,6 +1,6 @@
 {
   "name": "react-native-rowswipe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "iOS-style row swipe, forked from react-native-swipeout",
   "main": "index.js",
   "scripts": {
