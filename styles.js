@@ -11,11 +11,13 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   swipeoutBtn: {
-    alignItems: 'center',
+    alignItems: 'flex-end',
     backgroundColor: '#b6bec0',
     flex: 1,
     justifyContent: 'center',
     overflow: 'hidden',
+    paddingLeft: 20,
+    paddingRight: 20
   },
   swipeoutBtnText: {
     color: '#fff',
@@ -31,7 +33,7 @@ var styles = StyleSheet.create({
     top: 0,
   },
   swipeoutContent: {
-    flex: 1,
+    flex: 1
   },
   colorDelete: {
     backgroundColor: '#fb3d38',

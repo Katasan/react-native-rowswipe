@@ -1,30 +1,78 @@
 {
-  "name": "react-native-rowswipe",
-  "version": "0.0.2",
-  "description": "iOS-style row swipe, forked from react-native-swipeout",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:katasan/react-native-rowswipe.git"
-  },
-  "keywords": [
-    "react-native",
-    "react-component",
-    "ios",
-    "swipeout",
-    "button",
-    "swipe",
-    "ui"
+  "_args": [
+    [
+      "git+https://github.com/katasan/react-native-rowswipe.git",
+      "/Users/alonso/dev/Inspectly"
+    ]
   ],
-  "author": "Dan Cormier",
-  "license": "MIT",
+  "_from": "git+https://github.com/katasan/react-native-rowswipe.git",
+  "_id": "react-native-rowswipe@0.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-rowswipe",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/katasan/react-native-rowswipe/master/package.json",
+      "gitUrl": "git://github.com/katasan/react-native-rowswipe.git",
+      "httpsUrl": "git+https://github.com/katasan/react-native-rowswipe.git",
+      "shortcut": "github:katasan/react-native-rowswipe",
+      "ssh": "git@github.com:katasan/react-native-rowswipe.git",
+      "sshUrl": "git+ssh://git@github.com/katasan/react-native-rowswipe.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "git+https://github.com/katasan/react-native-rowswipe.git",
+    "rawSpec": "git+https://github.com/katasan/react-native-rowswipe.git",
+    "scope": null,
+    "spec": "git+https://github.com/katasan/react-native-rowswipe.git",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/katasan/react-native-rowswipe.git#4421f764638e070789cdf5545403e9d7735f99dd",
+  "_shasum": "c1dec2fd14244fdc8025d350464377b14135e19d",
+  "_shrinkwrap": null,
+  "_spec": "git+https://github.com/katasan/react-native-rowswipe.git",
+  "_where": "/Users/alonso/dev/Inspectly",
+  "author": {
+    "name": "Dan Cormier"
+  },
+  "bugs": {
+    "url": "https://github.com/katasan/react-native-rowswipe/issues"
+  },
   "dependencies": {
     "react-tween-state": "^0.1.3"
   },
+  "description": "iOS-style row swipe, forked from react-native-swipeout",
+  "devDependencies": {},
+  "gitHead": "4421f764638e070789cdf5545403e9d7735f99dd",
+  "homepage": "https://github.com/katasan/react-native-rowswipe#readme",
+  "keywords": [
+    "button",
+    "ios",
+    "react-component",
+    "react-native",
+    "swipe",
+    "swipeout",
+    "ui"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "react-native-rowswipe",
+  "optionalDependencies": {},
   "peerDependencies": {
     "react-native": "^0.x"
-  }
+  },
+  "readme": "\n# react-native-rowswipe\nThis component is a fork of the react-native-swipeout component with slightly different behaviour.\n\nRather than displaying buttons behind the swipe row, you swipe it to the left or the right of the screen to trigger an action.\n\nThis component should be conssidered unsupported and unmaintained and probably not used by anyone.\n\nForked from https://github.com/abelcha/react-native-swipeout\nWhich was forked from https://github.com/dancormier/react-native-swipeout\n\n\n\n## Usage example\n\nSee example/index.ios.js for a more detailed example.\nSee the [Wiki](https://github.com/dancormier/react-native-swipeout/wiki) usage tips.\nTo use swipeout behind a iOS-style listitem, try [react-native-listitem](https://github.com/dancormier/react-native-listitem).\n\n```\nvar Swipeout = require('react-native-rowswipe')\n\n// Buttons\nvar swipeoutBtns = [\n  {\n    text: 'Button'\n  }\n]\n\n// Swipeout component\n<Swipeout right={swipeoutBtns}>\n  <View>\n    <Text>Swipe me left</Text>\n  </View>\n</Swipeout>\n\n```\n\n## Props\n\nProp            | Type   | Optional | Default   | Description\n--------------- | ------ | -------- | --------- | -----------\nautoClose       | bool   | Yes      | false     | auto close on button press\nbackgroundColor | string | Yes      | '#dbddde' |\nclose           | bool   | Yes      |           | close swipeout\nleft            | array  | Yes      | []        | swipeout buttons on left\nonOpen          | func   | Yes      |           |\nright           | array  | Yes      | []        | swipeout buttons on right\nscroll          | func   | Yes      |           | prevent parent scroll\nonOpenLeft\t\t| func\t | No\t\t| \t\t\t| called when swiped to the left\nonOpenRight\t\t| func \t | No\t\t|\t\t\t| called when swiped to the right\n\n##### Button props\n\nProp            | Type   | Optional | Default   | Description\n--------------- | ------ | -------- | --------- | -----------\nbackgroundColor | string | Yes      | '#b6bec0' | background color\ncolor           | string | Yes      | '#ffffff' | text color\ncomponent       | string | Yes      | null      | pass custom component to button\nonPress         | func   | Yes      | null      | function executed onPress\ntext            | string | Yes      | 'Click Me'| text\ntype            | string | Yes      | 'default' | default, primary, secondary\nunderlayColor   | string | Yes      | null      | button underlay color on press\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/katasan/react-native-rowswipe.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
 }

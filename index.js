@@ -22,7 +22,7 @@ var SwipeoutBtn = React.createClass({
 , render: function() {
     var btn = this.props
 
-    var styleSwipeoutBtn = [styles.swipeoutBtn]
+    var styleSwipeoutBtn = [styles.swipeoutBtn, this.props.style]
 
     //  apply "type" styles (delete || primary || secondary)
     if (btn.type === 'delete') styleSwipeoutBtn.push(styles.colorDelete)
@@ -51,18 +51,12 @@ var SwipeoutBtn = React.createClass({
     if (btn.color) styleSwipeoutBtnText.push([{ color: btn.color }])
 
     return  (
-      <TouchableHighlight
-        onPress={this.props.onPress}
-        style={styles.swipeoutBtnTouchable}
-        underlayColor={this.props.underlayColor}
-      >
-        <View style={styleSwipeoutBtn}>
-          {btn.component ?
-            <View style={styleSwipeoutBtnComponent}>{btn.component}</View>
-          : <Text style={styleSwipeoutBtnText}>{btn.text}</Text>
-          }
-        </View>
-      </TouchableHighlight>
+      <View style={styleSwipeoutBtn}>
+        {btn.component ?
+          <View style={styleSwipeoutBtnComponent}>{btn.component}</View>
+        : <Text style={styleSwipeoutBtnText}>{btn.text}</Text>
+        }
+      </View>
     )
   }
 })
@@ -243,15 +237,14 @@ var Swipeout = React.createClass({
 
     var styleLeftPos = {
       left: {
-        left: 0,
-        overflow: 'hidden',
-        width: Math.min(limit*(posX/limit), limit),
+        width: contentWidth,
+        left: -contentWidth + posX
       }
     }
     var styleRightPos = {
       right: {
-        left: Math.abs(contentWidth + Math.max(limit, posX)),
-        right: 0,
+        left: contentWidth + posX,
+        width: contentWidth
       }
     }
     var styleContentPos = {
@@ -272,6 +265,9 @@ var Swipeout = React.createClass({
     var isRightVisible = posX < 0;
     var isLeftVisible = posX > 0;
 
+    isRightVisible = true;
+    //isLeftVisible = true;
+
     return (
       <View style={styleSwipeout}>
         <View
@@ -281,8 +277,8 @@ var Swipeout = React.createClass({
           {...this._panResponder.panHandlers}>
           {this.props.children}
         </View>
-        { this._renderButtons(this.props.right, isRightVisible, styleRight) }
-        { this._renderButtons(this.props.left, isLeftVisible, styleLeft) }
+        { this._renderButtons(this.props.right, isRightVisible, styleRight, {alignItems: 'flex-start'}) }
+        { this._renderButtons(this.props.left, isLeftVisible, styleLeft, {alignItems: 'flex-end'}) }
       </View>
     )},
 
@@ -294,10 +290,10 @@ var Swipeout = React.createClass({
       });
     },
 
-    _renderButtons: function(buttons, isVisible, style) {
+    _renderButtons: function(buttons, isVisible, style, buttonStyle) {
       if (buttons && isVisible) {
         return( <View style={style}>
-          { buttons.map(this._renderButton) }
+          { this._renderButton(buttons[0], 0, buttonStyle) }
         </View>);
       } else {
         return (
@@ -306,7 +302,7 @@ var Swipeout = React.createClass({
       }
     },
 
-    _renderButton: function(btn, i) {
+    _renderButton: function(btn, i, buttonStyle) {
       return (
         <SwipeoutBtn
             backgroundColor={btn.backgroundColor}
@@ -318,6 +314,7 @@ var Swipeout = React.createClass({
             text={btn.text}
             type={btn.type}
             underlayColor={btn.underlayColor}
+            style={[buttonStyle]}
             width={this.state.btnWidth}/>
       )
     }
