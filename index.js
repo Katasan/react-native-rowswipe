@@ -67,7 +67,9 @@ var Swipeout = React.createClass({
     return {
       rowID: -1,
       sectionID: -1,
-      swipePadding: 100
+      swipePadding: 100,
+      inactiveColor: 'red',
+      openThreshold: 0.5
     }
   }
 , getInitialState: function() {
@@ -155,7 +157,7 @@ var Swipeout = React.createClass({
     var btnsRightWidth = this.state.btnsRightWidth
 
     //  minimum threshold to open swipeout
-    var openX = contentWidth*0.5
+    var openX = contentWidth*this.props.openThreshold;
 
     //  should open swipeout
     var openLeft = posX > openX || posX > btnsLeftWidth/2
@@ -265,8 +267,14 @@ var Swipeout = React.createClass({
     var isRightVisible = posX < 0;
     var isLeftVisible = posX > 0;
 
-    isRightVisible = true;
+    //isRightVisible = true;
     //isLeftVisible = true;
+
+    var openX = contentWidth*this.props.openThreshold;
+    var isActive = (Math.abs(posX) > openX);
+
+    var leftBackgroundColor = isActive ? this.props.left[0].activeColor : this.props.inactiveColor;
+    var rightBackgroundColor = isActive ? this.props.right[0].activeColor : this.props.inactiveColor;
 
     return (
       <View style={styleSwipeout}>
@@ -277,8 +285,8 @@ var Swipeout = React.createClass({
           {...this._panResponder.panHandlers}>
           {this.props.children}
         </View>
-        { this._renderButtons(this.props.right, isRightVisible, styleRight, {alignItems: 'flex-start'}) }
-        { this._renderButtons(this.props.left, isLeftVisible, styleLeft, {alignItems: 'flex-end'}) }
+        { this._renderButtons(this.props.right, isRightVisible, styleRight, {alignItems: 'flex-start', backgroundColor: leftBackgroundColor}) }
+        { this._renderButtons(this.props.left, isLeftVisible, styleLeft, {alignItems: 'flex-end', backgroundColor: rightBackgroundColor}) }
       </View>
     )},
 
@@ -303,6 +311,7 @@ var Swipeout = React.createClass({
     },
 
     _renderButton: function(btn, i, buttonStyle) {
+      var backgroundColor = this.state.padded
       return (
         <SwipeoutBtn
             backgroundColor={btn.backgroundColor}
@@ -314,7 +323,7 @@ var Swipeout = React.createClass({
             text={btn.text}
             type={btn.type}
             underlayColor={btn.underlayColor}
-            style={[buttonStyle]}
+            style={buttonStyle}
             width={this.state.btnWidth}/>
       )
     }
