@@ -273,8 +273,8 @@ var Swipeout = React.createClass({
     var openX = contentWidth*this.props.openThreshold;
     var isActive = (Math.abs(posX) > openX);
 
-    var leftBackgroundColor = isActive ? this.props.left[0].activeColor : this.props.inactiveColor;
-    var rightBackgroundColor = isActive ? this.props.right[0].activeColor : this.props.inactiveColor;
+    var leftBackgroundColor = (isActive && this.props.left && this.props.left.length > 0) ? this.props.left[0].activeColor : this.props.inactiveColor;
+    var rightBackgroundColor = (isActive && this.props.right && this.props.right.length > 0) ? this.props.right[0].activeColor : this.props.inactiveColor;
 
     return (
       <View style={styleSwipeout}>
@@ -285,8 +285,8 @@ var Swipeout = React.createClass({
           {...this._panResponder.panHandlers}>
           {this.props.children}
         </View>
-        { this._renderButtons(this.props.right, isRightVisible, styleRight, {alignItems: 'flex-start', backgroundColor: leftBackgroundColor}) }
-        { this._renderButtons(this.props.left, isLeftVisible, styleLeft, {alignItems: 'flex-end', backgroundColor: rightBackgroundColor}) }
+        { this._renderButtons(this.props.right, isRightVisible, styleRight, {alignItems: 'flex-start', backgroundColor: rightBackgroundColor}) }
+        { this._renderButtons(this.props.left, isLeftVisible, styleLeft, {alignItems: 'flex-end', backgroundColor: leftBackgroundColor}) }
       </View>
     )},
 
